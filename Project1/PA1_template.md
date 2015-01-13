@@ -2,10 +2,12 @@ library(knitr)
 knit2html("PA1_template.Rmd")
 
 ---
-title: Analysis of Activity Monitoring Data
-author: John Slough II
-date: "13 Jan 2015"
+**Analysis of Activity Monitoring Data**
 ---
+John Slough II
+
+13 Jan 2015
+
 **Report**
 
 A histogram with density curve of the average number of steps taken per day is shown below.
