@@ -95,6 +95,10 @@ library(Hmisc)
 ## 
 ## Attaching package: 'Hmisc'
 ## 
+## The following object is masked from 'package:survey':
+## 
+##     deff
+## 
 ## The following objects are masked from 'package:xtable':
 ## 
 ##     label, label<-
