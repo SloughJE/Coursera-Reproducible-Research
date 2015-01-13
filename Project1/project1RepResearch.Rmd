@@ -131,8 +131,3 @@ grid.arrange(ggWE, ggWD, nrow=2, ncol=1)
 
 
 We can clearly see that there is a higher spike in number of steps for the weekdays however, it appears that the number of steps is higher throughout the day for weekends.
-
-
-**R-code**
-
-Available at: https://github.com/SloughJE/Cousera-Regression-Models
