@@ -2,10 +2,9 @@ library(knitr)
 knit2html("PA1_template.Rmd")
 
 ---
-title: "Analysis of Activity Monitoring Data"
-author: "John Slough II"
-date: "14 Jan 2015"
-output: html_document
+title: Analysis of Activity Monitoring Data
+author: John Slough II
+date: "13 Jan 2015"
 ---
 **Report**
 
