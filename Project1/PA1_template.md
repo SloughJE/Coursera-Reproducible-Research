@@ -1,5 +1,5 @@
 library(knitr)
-knit2html("project1RepResearch.Rmd")
+knit2html("PA1_template.Rmd")
 
 ---
 title: "Analysis of Activity Monitoring Data"

@@ -1,5 +1,5 @@
 library(knitr)
-knit2html("project1RepResearch.Rmd")
+knit2html("PA1_template.Rmd")
 
 ---
 title: "Analysis of Activity Monitoring Data"
@@ -22,7 +22,7 @@ byDay=ddply(activity,"date",summarize, sum=sum(steps))
 meanDay=round(mean(byDay$sum,na.rm=TRUE))
 medianDay=median(byDay$sum,na.rm=TRUE)
 ```
-```{r}
+```{r,fig.height=5,fig.width=8}
 library(ggplot2)
 
 ggplot(byDay, aes(x=sum))+ 
@@ -41,7 +41,7 @@ The mean and median number of steps per day are 10766 and `r medianDay` respecti
 The following plot is a time series of the 5-minute interval and the average number of steps taken, averaged across all days.  
 
 
-```{r}
+```{r,fig.height=5,fig.width=8}
 byInt=ddply(activity,"interval",summarize, avg=mean(steps,na.rm=TRUE))
 
 ggplot(byInt, aes(x = interval, y = avg, group = 1))+
@@ -81,7 +81,7 @@ detach("package:Hmisc")
 
 A histogram with density curve of the new dataset with imputed missing values is shown below.
 
-```{r}
+```{r,fig.height=5,fig.width=8}
 byDay.imp=ddply(activity.imp,"date",summarize, sum=sum(imputed.steps))
 
 ggplot(byDay.imp, aes(x=sum)) +theme_set(theme_bw())+ 
@@ -104,7 +104,7 @@ The mean and median number of steps per day from the new dataset are 10750 and `
  The following plot, created by making a new factor variable for weekend and weekdays was created to show different activity patterns between these two factors.  
  
 
-```{r}
+```{r,fig.height=7,fig.width=9}
 # create factor variable for Weekend vs. Weekday
 activity.imp$wend = as.factor(ifelse(weekdays(activity.imp$date) %in% 
         c("Saturday","Sunday"), "Weekend", "Weekday")) 
