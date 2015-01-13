@@ -22,7 +22,7 @@ byDay=ddply(activity,"date",summarize, sum=sum(steps))
 meanDay=round(mean(byDay$sum,na.rm=TRUE))
 medianDay=median(byDay$sum,na.rm=TRUE)
 ```
-```{r,fig.height=6,fig.width=10}
+```{r,fig.height=9,fig.width=13}
 library(ggplot2)
 
 ggplot(byDay, aes(x=sum))+ 
@@ -41,7 +41,7 @@ The mean and median number of steps per day are 10766 and `r medianDay` respecti
 The following plot is a time series of the 5-minute interval and the average number of steps taken, averaged across all days.  
 
 
-```{r,fig.height=6,fig.width=10}
+```{r,fig.height=9,fig.width=13}
 byInt=ddply(activity,"interval",summarize, avg=mean(steps,na.rm=TRUE))
 
 ggplot(byInt, aes(x = interval, y = avg, group = 1))+
@@ -81,7 +81,7 @@ detach("package:Hmisc")
 
 A histogram with density curve of the new dataset with imputed missing values is shown below.
 
-```{r,fig.height=6,fig.width=10}
+```{r,fig.height=9,fig.width=13}
 byDay.imp=ddply(activity.imp,"date",summarize, sum=sum(imputed.steps))
 
 ggplot(byDay.imp, aes(x=sum)) +theme_set(theme_bw())+ 
@@ -97,14 +97,14 @@ median.imp=median(byDay.imp$sum,na.rm=TRUE)
 
 ```
 
-The mean and median number of steps per day from the new dataset are 10750 and `r median.imp` respectively.  These values do differ from the estimates from the original dataset by `r 10766-10750` and `r medianDay-median.imp` for the means and medians, respectively.  From the histogram it appears that replacing the missing values with the means of that 5-minute interval have compressed the average total number of steps per day more around 10000 steps.  
+The mean and median number of steps per day from the new dataset are 10750 and `r median.imp` respectively.  These values do differ from the estimates from the original dataset by `r 10766-10750` and `r medianDay-median.imp` for the means and medians, respectively.  From the histogram it appears that replacing the missing values with the means of that 5-minute interval have concentrated the average total number of steps per day around 10000 steps.  
 
 **Differences in activity patterns between weekdays and weekends**
 
  The following plot, created by making a new factor variable for weekend and weekdays was created to show different activity patterns between these two factors.  
  
 
-```{r,fig.height=9,fig.width=11}
+```{r,fig.height=12,fig.width=15}
 # create factor variable for Weekend vs. Weekday
 activity.imp$wend = as.factor(ifelse(weekdays(activity.imp$date) %in% 
         c("Saturday","Sunday"), "Weekend", "Weekday")) 

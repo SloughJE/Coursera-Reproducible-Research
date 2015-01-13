@@ -146,7 +146,7 @@ mean.imp=round(mean(byDay.imp$sum,na.rm=TRUE))
 median.imp=median(byDay.imp$sum,na.rm=TRUE)
 ```
 
-The mean and median number of steps per day from the new dataset are 10750 and 10641 respectively.  These values do differ from the estimates from the original dataset by 16 and 124 for the means and medians, respectively.  From the histogram it appears that replacing the missing values with the means of that 5-minute interval have compressed the average total number of steps per day more around 10000 steps.  
+The mean and median number of steps per day from the new dataset are 10750 and 10641 respectively.  These values do differ from the estimates from the original dataset by 16 and 124 for the means and medians, respectively.  From the histogram it appears that replacing the missing values with the means of that 5-minute interval have concentrated the average total number of steps per day around 10000 steps.  
 
 **Differences in activity patterns between weekdays and weekends**
 
