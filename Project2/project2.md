@@ -1,18 +1,22 @@
-
-
-**John Slough II**
-
-21 Jan 2015
-
+---
+output: html_document
 ---
 **An Analysis of Severe Weather and Its Economic and Population Health Consequences**
----
+
+Coursera Reproducible Research Project II
+
+
+
+John Slough II
+
+25 Jan 2015
+
 
 
 
 **Synopsis**
 
-Severe weather event data and its economic and public health consequences was analyzed to determine which events were most harmful with respect to population health and which types of events have the greatest economic consequences.  From analysis of the data from 1996 to 2011, it was determined that excessive heat, tornadoes and floods have the worst consequences in terms of public health.  Tstm wind, flash flood, tornadoes, and hail are among the worst in terms of economic consequences. 
+Severe weather event data and its economic and public health consequences were analyzed to determine which events were most harmful with respect to population health and economic consequences.  From analysis of the data from 1996 to 2011, it was determined that tornadoes, excessive heat,  and floods have the worst consequences in terms of public health.  Tstm wind, flash flood, tornadoes, and hail are among the worst in terms of economic consequences. Tornadoes were the worst overall offender.
 
 
 **Data**
@@ -105,15 +109,19 @@ top=FatInjCountSort[c(1:7,9,10),]
 heat=FatInjCountSort[8,]
 library(calibrate)
 
-plot(FatInjCountSort$injuries,FatInjCountSort$fatalities,cex=.9,xlim=c(0,20500),ylim=c(0,1800),
-     col=rgb(100,0,0,90,maxColorValue=150), pch=16,xlab="Number of Injuries",ylab="Number of Deaths",
+plot(FatInjCountSort$injuries,FatInjCountSort$fatalities,cex=.9,
+     xlim=c(0,20500),ylim=c(0,1800),
+     col=rgb(100,0,0,90,maxColorValue=150), pch=16,
+     xlab="Number of Injuries",ylab="Number of Deaths",
      main="Injuries & Deaths from Different Types of Severe Weather\nUSA: 1996 to 2011")
 par(new=TRUE)
 plot(top$injuries,top$fatalities,xlim=c(0,20500),ylim=c(0,1800),xaxt='n',yaxt='n',bty='n',ylab='',xlab='',col=rgb(100,0,0,maxColorValue=100),pch=16)
-textxy(top$injuries,top$fatalities, top$EVTYPE, cex= 0.5,pos=3)
+textxy(top$injuries,top$fatalities, top$EVTYPE, cex=.6,pos=3)
 par(new=TRUE)
-plot(heat$injuries,heat$fatalities,xlim=c(0,20500),ylim=c(0,1800),xaxt='n',yaxt='n',bty='n',ylab='',xlab='',col=rgb(100,0,0,maxColorValue=100),pch=16)
-textxy(heat$injuries,heat$fatalities, heat$EVTYPE, cex= 0.5,pos=4)
+plot(heat$injuries,heat$fatalities,xlim=c(0,20500),ylim=c(0,1800),xaxt='n',
+     yaxt='n',bty='n',ylab='',xlab='',col=rgb(100,0,0,
+                                              maxColorValue=100),pch=16)
+textxy(heat$injuries,heat$fatalities, heat$EVTYPE, cex=.6,pos=4)
 ```
 
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
@@ -136,8 +144,10 @@ PropCropSum=merge(Propsum,Cropsum,all.x=TRUE)
 # change from million to billion $ for plots
 PropCropSum$property=PropCropSum$property/1000
 PropCropSum$crop=PropCropSum$crop/1000
-PropCropSort=PropCropSum[order(PropCropSum$property,PropCropSum$crop,decreasing=TRUE),]
-PropCropSortcrop=PropCropSum[order(PropCropSum$crop,PropCropSum$property,decreasing=TRUE),]
+PropCropSort=PropCropSum[order(PropCropSum$property,PropCropSum$crop,
+                               decreasing=TRUE),]
+PropCropSortcrop=PropCropSum[order(PropCropSum$crop,
+                                   PropCropSum$property,decreasing=TRUE),]
 
 PropCropSort[1:10,]
 ```
@@ -185,18 +195,18 @@ topdamHSnow=PropCropSort[10,]
 p=plot(PropCropSort$property,PropCropSort$crop,cex=.9,xlim=c(0,1320),
        ylim=c(0,500),col=rgb(100,0,0,90,maxColorValue=150), pch=16,
        xlab="Property Damage in billion $",ylab="Crop Damage in billion $",
-     main="Crop & Property Damage from Different Types of Severe Weather\nUSA: 1996 to 2011")
+main="Crop & Property Damage from Different Types of Severe Weather\nUSA: 1996 to 2011")
 par(new=TRUE)
 plot(topdam$property,topdam$crop,xlim=c(0,1320),ylim=c(0,500),xaxt='n',
      yaxt='n',bty='n',ylab='',xlab='',col=rgb(100,0,0,maxColorValue=100),
      pch=16)
-textxy(topdam$property,topdam$crop, topdam$EVTYPE, cex= 0.5,pos=3)
+textxy(topdam$property,topdam$crop, topdam$EVTYPE, cex=.6,pos=3)
 par(new=TRUE)
 plot(topdamHSnow$property,topdamHSnow$crop,xlim=c(0,1320),ylim=c(0,500),
      xaxt='n',yaxt='n',bty='n',ylab='',xlab='',
      col=rgb(100,0,0,maxColorValue=100),pch=16)
 textxy(topdamHSnow$property,topdamHSnow$crop, topdamHSnow$EVTYPE, 
-       cex= 0.5,pos=1)
+       cex=.6,pos=1)
 ```
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
@@ -215,7 +225,8 @@ PropCropSumTotal$total=PropCropSumTotal$property+PropCropSumTotal$crop
 AllCount=merge(PropCropSumTotal,FatInjCount,all=TRUE)
 
 AllCount[is.na(AllCount)] = 0
-AllCountSort=AllCount[order(AllCount$fatalities,AllCount$total,AllCount$injuries,decreasing=TRUE),]
+AllCountSort=AllCount[order(AllCount$fatalities,
+        AllCount$total,AllCount$injuries,decreasing=TRUE),]
 
 All10=AllCount[order(AllCount$total,decreasing=TRUE),][1:10,]
 ExHeat=AllCount[which(AllCount$EVTYPE=="EXCESSIVE HEAT"),] 
@@ -223,15 +234,16 @@ All10=rbind(All10,ExHeat)
 library(scatterplot3d)
 
 sp3D=scatterplot3d(AllCountSort$injuries,AllCountSort$fatalities,
-                   AllCountSort$total,color=rgb(100,0,0,90,maxColorValue=150),
-                   pch=16,xlab="Number of Injuries", 
-              ylab="Number of Fatalities", zlab="Total Damage in billion $",
-              main="Total Damage, Fatalities & Injuries from Different Types of Severe Weather\nUSA: 1996 to 2011",
+        AllCountSort$total,color=rgb(100,0,0,90,maxColorValue=150),
+        pch=16,xlab="Number of Injuries", 
+        ylab="Number of Fatalities", zlab="Total Damage in billion $",
+main="Total Damage, Fatalities & Injuries from Different 
+Types of Severe Weather\nUSA: 1996 to 2011",
               highlight.3d=FALSE,type="h")
 sp3D$points3d(x=All10$injuries,y=All10$fatalities,z=All10$total,
               col=rgb(100,0,0,maxColorValue=100),pch=16)
 sp3D.coords = sp3D$xyz.convert(All10$injuries,All10$fatalities,All10$total)
-text(sp3D.coords$x, sp3D.coords$y, labels=All10$EVTYPE, cex=.5, pos=3) 
+text(sp3D.coords$x, sp3D.coords$y, labels=All10$EVTYPE, cex=.6, pos=3) 
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
@@ -239,4 +251,5 @@ text(sp3D.coords$x, sp3D.coords$y, labels=All10$EVTYPE, cex=.5, pos=3)
 **Conclusion**
 
 
-Policy makers may use this analysis to better prioritize resources in order deal with the consequences of these severe weather events.  By knowing which severe weather events produce the most, and which types of damage, resources can be directed in a more efficient manner.  
+Policy makers may use this analysis to better prioritize resources in order deal with the consequences of these severe weather events.  By knowing which severe weather events produce the most, and which types of damage, resources can be directed in a more efficient manner.  When considering the variables analyzed above, tornadoes produce the worst economic and public health consequences.
+
