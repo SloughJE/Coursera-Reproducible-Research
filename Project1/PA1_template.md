@@ -1,6 +1,5 @@
 library(knitr)
-knit2html("PA1_template.Rmd")
-
+knit2html("project2.Rmd")
 ---
 **Analysis of Activity Monitoring Data**
 ---
@@ -95,14 +94,6 @@ library(Hmisc)
 ```
 ## 
 ## Attaching package: 'Hmisc'
-## 
-## The following object is masked from 'package:survey':
-## 
-##     deff
-## 
-## The following objects are masked from 'package:xtable':
-## 
-##     label, label<-
 ## 
 ## The following objects are masked from 'package:plyr':
 ## 
